@@ -48,6 +48,30 @@ html, body {
     background-color: var(--button-color-lighter);
 }
 
+.header .popup-form {
+    display: none;
+    width: 350px;
+    height: 500px;
+    background-color: var(--main-bg-color);
+}
+
+.header .popup-form.active {
+    display: block;
+    position: absolute;
+    bottom: 80px;
+}
+
+.header .popup-form .form-book-info {
+    height: 100%;
+    display: grid;
+}
+
+.header .popup-form .form-book-info .row {
+    justify-self: end;
+    align-self: center;
+    margin-right: 38px;
+}
+
 .library-container {
     grid-column: 2 / 3;
     background-color: var(--library-bg-color);

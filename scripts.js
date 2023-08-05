@@ -10,6 +10,11 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
+document.querySelector(".add-book-btn").addEventListener("click", function() {
+    let form = document.querySelector(".popup-form");
+    form.classList.toggle("active");
+});
+
 function addBookToLibrary() {
     const book = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
     const book1 = new Book("Harry Potter and the Philosopher's Stone", "J. K. Rowling", 223, false);
