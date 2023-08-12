@@ -1,7 +1,12 @@
 let library = [];
 
-addBookToLibrary();
-displayBooks(library);
+document.querySelector(".form-book-info").addEventListener("submit", function(e) {
+    const book = Object.fromEntries(new FormData(e.target).entries());
+    addBookToLibrary(book.title, book.author, book.pages, book.read);
+    
+    e.target.reset();
+    e.preventDefault();
+});
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -15,33 +20,34 @@ document.querySelector(".add-book-btn").addEventListener("click", function() {
     form.classList.toggle("active");
 });
 
-function addBookToLibrary() {
-    const book = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
-    const book1 = new Book("Harry Potter and the Philosopher's Stone", "J. K. Rowling", 223, false);
-    const book2 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 180, false);
+function addBookToLibrary(title, author, pages, read) {
+    const book = new Book(title, author, pages, read);
     library.push(book);
-    library.push(book1);
-    library.push(book2);
-    console.log(library);
+    displayBook(book);
 }
 
-function displayBooks(library) {
+function displayBook(book) {
     const libraryContainer = document.querySelector(".library-container");
-    library.forEach( book => {
-        const title = document.createElement("div");
-        title.textContent = `Title: ${book.title}`;
 
-        const author = document.createElement("div");
-        author.textContent = `Author: ${book.author}`;
+    const title = document.createElement("div");
+    title.textContent = `Title: ${book.title}`;
 
-        const pages = document.createElement("div");
-        pages.textContent = `Pages: ${book.pages}`;
+    const author = document.createElement("div");
+    author.textContent = `Author: ${book.author}`;
 
-        const bookContainer = document.createElement("div");
-        bookContainer.appendChild(title);
-        bookContainer.appendChild(author);
-        bookContainer.appendChild(pages);
+    const pages = document.createElement("div");
+    pages.textContent = `Pages: ${book.pages}`;
 
-        libraryContainer.appendChild(bookContainer);
-    });
+    const read = document.createElement("div");
+    if(book.read) {
+        read.textContent = `Read: √`;
+    } else read.textContent = `Read: x`;
+
+    const bookContainer = document.createElement("div");
+    bookContainer.appendChild(title);
+    bookContainer.appendChild(author);
+    bookContainer.appendChild(pages);
+    bookContainer.appendChild(read);
+
+    libraryContainer.appendChild(bookContainer);
 }
