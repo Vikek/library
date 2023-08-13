@@ -75,6 +75,7 @@ html, body {
 .library-container {
     grid-column: 2 / 3;
     background-color: var(--library-bg-color);
+    box-shadow: 0px 0px 10px black;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     justify-items: center;
@@ -90,4 +91,17 @@ html, body {
     padding: 16px;
     border-radius: 10px;
     display: grid;
+}
+
+.library-container button {
+    width: 70px;
+    height: 30px;
+    border-style: none;
+    border-radius: 10px;
+    background-color: var(--button-color);
+    color: var(--light-text-color);
+}
+
+.library-container button:hover {
+    background-color: var(--button-color-lighter);
 }
