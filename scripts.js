@@ -63,11 +63,17 @@ function displayBook(book) {
     bookContainer.appendChild(pages);
     bookContainer.appendChild(read);
     bookContainer.appendChild(removeBtn);
+    bookContainer.id = book.title;
 
     libraryContainer.appendChild(bookContainer);
 
     document.querySelectorAll(".remove-book-btn").forEach(function(btn) {
         btn.addEventListener("click", function(e) {
+            for (let i = 0; i < library.length; i++) {
+                if (library[i].title === e.target.parentNode.id) {
+                    library.splice(i, 1);
+                }
+            }
             e.target.parentNode.remove();
         });
     });
