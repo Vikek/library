@@ -36,28 +36,27 @@ function displayBook(book) {
 
     const title = document.createElement("div");
     title.textContent = `Title: ${book.title}`;
+    title.classList.add("title");
 
     const author = document.createElement("div");
     author.textContent = `Author: ${book.author}`;
+    author.classList.add("author");
 
     const pages = document.createElement("div");
     pages.textContent = `Pages: ${book.pages}`;
+    pages.classList.add("pages")
 
     const read = document.createElement("div");
-    if(book.read) {
-        read.textContent = `Read: √`;
-    } else read.textContent = `Read: x`;
+    read.textContent = `Mark as read`;
+    read.classList.add("read");
 
-    const removeBtn = document.createElement("button");
-    removeBtn.classList.add("remove-book-btn");
+    const toggleReadSwitch = createToggleReadSwitch();
+    read.appendChild(toggleReadSwitch);
 
-    const removeBtnSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    removeBtnSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    removeBtnSvg.setAttribute("viewBox", "0 0 24 24");
-    removeBtnSvg.innerHTML = '<path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />';
-    removeBtn.appendChild(removeBtnSvg);
+    const removeBtn = createRemoveBookButton();
 
     const bookContainer = document.createElement("div");
+    bookContainer.classList.add("book");
     bookContainer.appendChild(title);
     bookContainer.appendChild(author);
     bookContainer.appendChild(pages);
@@ -77,4 +76,33 @@ function displayBook(book) {
             e.target.parentNode.remove();
         });
     });
+}
+
+function createRemoveBookButton() {
+    let removeBtn = document.createElement("button");
+    removeBtn.classList.add("remove-book-btn");
+
+    let removeBtnSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    removeBtnSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    removeBtnSvg.setAttribute("viewBox", "0 0 24 24");
+    removeBtnSvg.innerHTML = '<path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />';
+    removeBtn.appendChild(removeBtnSvg);
+
+    return removeBtn;
+}
+
+function createToggleReadSwitch() {
+    let toggleSwitch = document.createElement("label");
+    toggleSwitch.classList.add("switch");
+
+    let input = document.createElement("input");
+    input.type = "checkbox";
+
+    let slider = document.createElement("span");
+    slider.classList.add("slider");
+
+    toggleSwitch.appendChild(input);
+    toggleSwitch.appendChild(slider);
+
+    return toggleSwitch;
 }
