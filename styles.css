@@ -11,6 +11,7 @@
     --button-color-lighter: #5a6a83;
     --light-text-color: #f8fafc;
     --close-button-color: #991b1b;
+    --checkbox-button-color: #16a34a;
 }
 
 html, body {
@@ -58,12 +59,15 @@ svg {
     display: none;
     width: 350px;
     height: 500px;
-    background-color: var(--main-bg-color);
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: var(--book-bg-color);
 }
 
 .header .popup-form.active {
     display: block;
     position: absolute;
+    z-index: 1;
     bottom: 80px;
 }
 
@@ -73,9 +77,47 @@ svg {
 }
 
 .header .popup-form .form-book-info .row {
-    justify-self: end;
+    display: grid;
+    justify-self: center;
     align-self: center;
-    margin-right: 38px;
+}
+
+.header .popup-form .form-book-info input[type=text], .form-book-info input[type=number] {
+    height: 30px;
+    width: 150px;
+    padding: 8px 6px;
+    margin-top: 4px;
+    font-size: 16px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.header .popup-form .form-book-info input[type=text]:focus, .form-book-info input[type=number]:focus {
+    outline: var(--button-color) solid 1px;
+    background-color: #f1f5f9;
+}
+
+.header .popup-form .form-book-info input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+    margin-top: 4px;
+    accent-color: var(--checkbox-button-color);
+    justify-self: center;
+}
+
+.header .popup-form .form-book-info input[type=submit] {
+    height: 36px;
+    width: 74px;
+    font-size: 16px;
+    border-style: none;
+    border-radius: 15px;
+    background-color: var(--button-color);
+    color: var(--light-text-color);
+}
+
+.header .popup-form .form-book-info input[type=submit]:hover {
+    background-color: var(--button-color-lighter);
 }
 
 .library-container {
@@ -169,7 +211,7 @@ svg {
 }
 
 .library-container .switch input:checked + .slider {
-    background-color: #16a34a;
+    background-color: var(--checkbox-button-color);
 }
 
 .library-container .switch input:checked + .slider:before {

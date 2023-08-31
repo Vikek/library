@@ -49,8 +49,7 @@ function displayBook(book) {
     const read = document.createElement("div");
     read.textContent = `Mark as read`;
     read.classList.add("read");
-
-    const toggleReadSwitch = createToggleReadSwitch();
+    const toggleReadSwitch = createToggleReadSwitch(book.read);
     read.appendChild(toggleReadSwitch);
 
     const removeBtn = createRemoveBookButton();
@@ -91,12 +90,13 @@ function createRemoveBookButton() {
     return removeBtn;
 }
 
-function createToggleReadSwitch() {
+function createToggleReadSwitch(read) {
     let toggleSwitch = document.createElement("label");
     toggleSwitch.classList.add("switch");
 
     let input = document.createElement("input");
     input.type = "checkbox";
+    input.checked = read;
 
     let slider = document.createElement("span");
     slider.classList.add("slider");
