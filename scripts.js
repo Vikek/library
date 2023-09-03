@@ -9,6 +9,10 @@ function Book(title, author, pages, read) {
 
 document.querySelector(".form-book-info").addEventListener("submit", function(e) {
     const book = Object.fromEntries(new FormData(e.target).entries());
+
+    if (book.read = "on") book.read = true;
+    else book.read = false;
+
     addBookToLibrary(book.title, book.author, book.pages, book.read);
     
     toggleForm();
@@ -75,6 +79,16 @@ function displayBook(book) {
             e.target.parentNode.remove();
         });
     });
+
+    document.querySelectorAll(".read-switch").forEach(function(btn) {
+        btn.addEventListener("change", function(e) {
+            for (let i = 0; i < library.length; i++) {
+                if (library[i].title === e.target.closest(".book").id) {
+                    library[i].read = e.target.checked;
+                }
+            }
+        });
+    });
 }
 
 function createRemoveBookButton() {
@@ -95,6 +109,7 @@ function createToggleReadSwitch(read) {
     toggleSwitch.classList.add("switch");
 
     let input = document.createElement("input");
+    input.classList.add("read-switch");
     input.type = "checkbox";
     input.checked = read;
 
