@@ -49,6 +49,7 @@ svg {
     border-radius: 12px;
     background-color: var(--button-color);
     color: var(--light-text-color);
+    cursor: pointer;
 }
 
 .header .add-book-btn:hover {
@@ -57,7 +58,8 @@ svg {
 
 .header .popup-form {
     display: none;
-    width: 350px;
+    width: 300px;
+    padding: 10px 20px;
     height: 500px;
     border: 2px solid black;
     border-radius: 10px;
@@ -80,22 +82,34 @@ svg {
     display: grid;
     justify-self: center;
     align-self: center;
+    width: 100%;
+    position: relative;
 }
 
 .header .popup-form .form-book-info input[type=text], .form-book-info input[type=number] {
     height: 30px;
-    width: 150px;
+    width: 200px;
     padding: 8px 6px;
     margin-top: 4px;
     font-size: 16px;
     border: 1px solid black;
     border-radius: 5px;
     box-sizing: border-box;
+    outline: none;
 }
 
 .header .popup-form .form-book-info input[type=text]:focus, .form-book-info input[type=number]:focus {
-    outline: var(--button-color) solid 1px;
-    background-color: #f1f5f9;
+    border-width: 2px;
+}
+
+.header .popup-form .form-book-info input:invalid {
+    border-color: red;
+}
+
+.header .popup-form .form-book-info .error {
+    color: red;
+    position: absolute;
+    bottom: -20px;
 }
 
 .header .popup-form .form-book-info input[type=checkbox] {
@@ -103,7 +117,7 @@ svg {
     height: 20px;
     margin-top: 4px;
     accent-color: var(--checkbox-button-color);
-    justify-self: center;
+    cursor: pointer;
 }
 
 .header .popup-form .form-book-info input[type=submit] {
@@ -114,6 +128,7 @@ svg {
     border-radius: 15px;
     background-color: var(--button-color);
     color: var(--light-text-color);
+    cursor: pointer;
 }
 
 .header .popup-form .form-book-info input[type=submit]:hover {
@@ -167,6 +182,7 @@ svg {
     justify-self: end;
     grid-column: 2 / 3;
     grid-row: 1 / -1;
+    cursor: pointer;
 }
 
 .library-container .remove-book-btn:hover {

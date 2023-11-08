@@ -7,7 +7,27 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
+const author = document.getElementById("author");
+const authorError = document.querySelector("#author + span.error");
+author.addEventListener("input", () => showAuthorError());
+
+const title = document.getElementById("title");
+const titleError = document.querySelector("#title + span.error");
+title.addEventListener("input", () => showTitleError());
+
 document.querySelector(".form-book-info").addEventListener("submit", function(e) {
+    if (!author.validity.valid) {
+        showAuthorError();
+        e.preventDefault();
+        return;
+    }
+
+    if (!title.validity.valid) {
+        showTitleError();
+        e.preventDefault();
+        return;
+    }
+    
     const book = Object.fromEntries(new FormData(e.target).entries());
 
     if (book.read = "on") book.read = true;
@@ -23,6 +43,30 @@ document.querySelector(".form-book-info").addEventListener("submit", function(e)
 document.querySelector(".add-book-btn").addEventListener("click", function() {
     toggleForm();
 });
+
+function showAuthorError() {
+    if (author.validity.valid) {
+        authorError.textContent = "";
+    }
+
+    if (author.validity.valueMissing) {
+        authorError.textContent = "Please enter the authors name";
+    } else if (author.validity.patternMismatch) {
+        authorError.textContent = "Please enter a valid name";
+    }
+}
+
+function showTitleError() {
+    if (title.validity.valid) {
+        titleError.textContent = "";
+    }
+
+    if (title.validity.valueMissing) {
+        titleError.textContent = "Please enter the title";
+    } else if (title.validity.patternMismatch) {
+        titleError.textContent = "Please enter a valid title";
+    }
+}
 
 function toggleForm() {
     let form = document.querySelector(".popup-form");
